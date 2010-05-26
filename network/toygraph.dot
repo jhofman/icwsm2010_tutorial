@@ -1,0 +1,35 @@
+// compile with graphviz as:
+// neato -Tpng toygraph.dot > toygraph.png
+
+digraph G {
+
+	//page="8.5,11!"
+	//size="7.5,10!"
+	//ratio="fill"
+	Node [fixedsize=true,width=0.25,height=0.25]//,style=filled,fontsize=10]
+
+	Node1 [shape=circle,label="1"]
+	Node2 [shape=circle,label="2"]
+	Node3 [shape=circle,label="3"]
+	Node4 [shape=circle,label="4"]
+	Node5 [shape=circle,label="5"]
+	Node6 [shape=circle,label="6"]
+	Node7 [shape=circle,label="7"]
+	Node8 [shape=circle,label="8"]
+	Node9 [shape=circle,label="9"]
+	Node10 [shape=circle,label="10"]
+
+
+	Node1->Node4
+	Node1->Node5
+	Node1->Node6
+	Node7->Node6
+	Node7->Node1
+	Node3->Node1 [dir=both]
+	Node4->Node2
+	Node3->Node2
+	Node2->Node8
+	Node10->Node2
+	Node2->Node9
+	Node3->Node4 [dir=both]
+}

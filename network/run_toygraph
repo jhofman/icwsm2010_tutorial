@@ -1,0 +1,45 @@
+#!/bin/bash
+
+
+run_cmd() {
+    msg=$1
+    cmd=$2
+    fields=$3
+
+    echo "$msg"
+    echo "$cmd"
+    eval $cmd
+    echo $fields
+    read
+}
+
+echo "[press return to continue]"
+echo
+
+run_cmd "displaying original edge list" \
+    "cat toygraph.edgelist" \
+    "source, target"
+
+run_cmd "converting edgelist to adjacency list" \
+    "cat toygraph.edgelist | ./adjacency_list.py -l > toygraph.adjlist; cat toygraph.adjlist" \
+    "node, in_degree, out_degree, in_neighbors, out_neighbors"
+
+run_cmd "calculating degree distribution" \
+    "cat toygraph.adjlist | ./degree_dist.py -l > toygraph.degree; cat toygraph.degree" \
+    "direction, degree, num_nodes"
+
+run_cmd "calculating clustering and neighborhood size" \
+    "cat toygraph.adjlist | ./clustering.py -l > toygraph.clustering > toygraph.clustering; cat toygraph.clustering" \
+    "node, directed_triangles, num_one_hop, num_two_hop"
+
+run_cmd "initializing bfs with node 1 as source" \
+    "cat toygraph.adjlist | ./bfs_init.py -l source=1 > toygraph.bfs0; cat toygraph.bfs0" \
+    "node, dist_from_source, out_neighbors"
+
+for i in 1 2 3
+do
+    run_cmd "round $i/3 of bfs" \
+	"cat toygraph.bfs$((i-1)) | ./bfs.py -l > toygraph.bfs$i; cat toygraph.bfs$i" \
+	"node, dist_from_source, out_neighbors"
+
+done
