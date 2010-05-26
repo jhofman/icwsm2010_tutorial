@@ -1,12 +1,12 @@
-the obligatory wordcount example for an introduction to mapreduce,
+The obligatory wordcount example for an introduction to mapreduce,
 implemented in hadoop streaming using a simple wrapper class
-(hstream). counts the number of times each word in the input occurs.
+(hstream). Counts the number of times each word in the input occurs.
 
-to run locally:
+To run locally:
 
    ./run_wordcount
 
-to run with hadoop:
+To run with Hadoop:
 
    ./run_wordcount -h
 

@@ -1,25 +1,25 @@
-code for presented network examples.
+Code for presented network examples.
 
 toygraph.edgelist contains a directed edgelist for the example graph,
 a visualization of which is given in toygraph.png (generated from
 toygraph.dot with graphviz).
 
-to run:
+To run:
 
    ./run_toygraph
 
-this will convert the edgelist to an adjacency list, generate the
+This will convert the edgelist to an adjacency list, generate the
 degree distribution, calculate the number of clustering coefficient
 and one/two-hop neighborhood sizes, and perform breadth-first
-search. (note: clustering coefficient computes number of closed,
+search. (Note: clustering coefficient computes number of closed,
 out-bound triangles that each node belongs to.)
 
-all examples run locally, but can be run using hadoop streaming on
+All examples run locally, but can be run using Hadoop streaming on
 large input, e.g.:
 
       cat toygraph.edgelist | ./adjacency_list.py -l > toygraph.adjlist
 
-can be run on hadoop as:
+can be run on Hadoop as:
 
     $HADOOP_HOME/bin/hadoop jar $HADOOP_HOME/contrib/streaming/hadoop-*-streaming.jar \
 	-input toygraph.edgelist \
@@ -29,4 +29,4 @@ can be run on hadoop as:
 	-file adjacency_list.py \
 	-file hstream.py
 
-where $HADOOP_HOME points to your hadoop install.
+where $HADOOP_HOME points to your Hadoop install.

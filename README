@@ -1,6 +1,29 @@
-This repository contains code for the tutorial I presented at ICWSM
-2010, "Large-scale social media analysis with Hadoop". More
-information on the tutorial is available here:
+This repository contains example code for the tutorial I presented at
+ICWSM 2010, "Large-scale social media analysis with Hadoop". More
+information, including the slides, is available here:
 
-http://jakehofman.com/icwsm2010
+  http://jakehofman.com/icwsm2010
+
+wordcount/ contains the wordcount example on small input text
+network/ contains network examples on a small toygraph
+
+Examples can be run locally, using the "cat data | map | sort |
+reduce" analog of Hadoop streaming, or with Hadoop streaming.
+
+To install Hadoop locally, just download and untar the source.
+Quick start guides available at:
+
+  http://hadoop.apache.org/common/docs/current/quickstart.html
+  or
+  http://www.ibm.com/developerworks/linux/library/l-hadoop-1/
+
+If installing on Mac OS X, make sure to set JAVA_HOME to point to Java
+1.6:
+
+  http://blog.sethladd.com/2009/04/mac-os-x-hadoop-0191-and-java-16.html
+
+My Hadoop bookmarks are available here:
+
+  http://delicious.com/jhofman/hadoop
+  http://delicious.com/jhofman/hadoop+tutorials
 
