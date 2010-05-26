@@ -4,8 +4,8 @@ information, including the slides, is available here:
 
   http://jakehofman.com/icwsm2010
 
-wordcount/ contains the wordcount example on small input text
-network/ contains network examples on a small toygraph
+  wordcount/ contains the wordcount example on small input text
+  network/ contains network examples on a small toygraph
 
 Examples can be run locally, using the "cat data | map | sort |
 reduce" analog of Hadoop streaming, or with Hadoop streaming.
