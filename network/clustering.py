@@ -1,14 +1,21 @@
 #!/usr/bin/env python
+#
+# file: clustering.py
+#
+# description: calculates number of directed triangles each node is a
+# member of, as well as size of one/two-hop neighborhoods.
+#
+# usage: see run_toygraph
+#
+# author: jake hofman (gmail: jhofman)
+#
 
 from hstream import HStream
 from collections import defaultdict
 import sys
-from datetime import datetime
 
 class ClusteringCoefficient(HStream):
     def mapper(self, record):
-        # assumes input of:
-        # node in_degree out_degree in_neighbors out_neighbors
 
         if len(record) != 5:
             sys.stderr.write("\t".join(record)+'\n')
@@ -16,19 +23,18 @@ class ClusteringCoefficient(HStream):
         else:
             u, in_degree, out_degree, in_neighbors, out_neighbors = record
 
-            # note: for completed inbound triangles:
+            # note: for completed inbound triangles, swap in and out neighbors
             # in_neighbors, out_neighbors = out_neighbors, in_neighbors
 
-            # for each in_neighbor v write:
-            # v u out_neighbors
+            # pass all out_neighbors to each in_neighbor
+            # to compile directed two-hop neighborhood
+            #
+            # read as "v goes through u to reach out_neighbors"
             [self.write_output((v,u,out_neighbors)) \
              for v in in_neighbors.split()]
 
 
-    def reducer(self, key, records):
-        # assumes input
-        # node one_hop_neighbor two_hop_neighbors
-        
+    def reducer(self, key, records):        
         # dictionaries to store one and two hop neighbors
         # note: two hop includes one hop neighbors
         onehop={}
@@ -36,7 +42,7 @@ class ClusteringCoefficient(HStream):
 
         for record in records:
             if len(record) == 2:
-                # no out neighbors
+                # no out-neighbors
                 # just record v as one hop neighbor
                 u, v = record
                 onehop[v]=1
@@ -55,10 +61,6 @@ class ClusteringCoefficient(HStream):
         # number of nodes within two hops
         size_twohop=size_onehop+len(twohop)
 
-        if size_onehop > 20000:
-            sys.stderr.write('[%s] node %s: onehop %d, one+twohop: %d\n' %
-                             (datetime.now(), key, size_onehop, size_twohop))
-
         # find intersection of nodes in one and two hop neighborhoods
         # sum up number of paths to second hop node
         onetwo=[twohop[k] for k in onehop.keys() if k in twohop]
@@ -68,10 +70,6 @@ class ClusteringCoefficient(HStream):
         size_twohop-=len(onetwo)
         
         self.write_output((key, triangles, size_onehop, size_twohop))
-
-        if size_onehop > 20000:
-            sys.stderr.write('[%s] node %s: done\n' %
-                             (datetime.now(), key))
 
 if __name__ == '__main__':
 

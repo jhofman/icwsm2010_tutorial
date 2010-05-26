@@ -1,4 +1,13 @@
 #!/usr/bin/env python
+#
+# file: bfs.py
+#
+# description: runs one round of breadth-first search
+#
+# usage: see run_toygraph
+#
+# author: jake hofman (gmail: jhofman)
+#
 
 from hstream import HStream
 from collections import defaultdict

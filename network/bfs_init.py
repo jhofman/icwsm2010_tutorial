@@ -1,4 +1,13 @@
 #!/usr/bin/env python
+#
+# file: bfs_init.py
+#
+# description: initialize breadth-first search
+#
+# usage: see run_toygraph
+#
+# author: jake hofman (gmail: jhofman)
+#
 
 from hstream import HStream
 from collections import defaultdict
@@ -7,7 +16,7 @@ import sys
 class BreadthFirstSearchInit(HStream):
 
     def mapper_init(self):
-        # get source node id from argument (specified as source=node)
+        # get source node id from argument (specified as source=node after -[m|r|l] switch) 
         self.source = self.args['source']
 
     def mapper(self, record):

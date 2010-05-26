@@ -1,11 +1,12 @@
 This repository contains example code for the tutorial I presented at
 ICWSM 2010, "Large-scale social media analysis with Hadoop". More
-information, including the slides, is available here:
+information, including the slides, available here:
 
   http://jakehofman.com/icwsm2010
 
   wordcount/ contains the wordcount example on small input text
   network/ contains network examples on a small toygraph
+  hstream.py is a simple class for implementing streaming jobs
 
 Examples can be run locally, using the "cat data | map | sort |
 reduce" analog of Hadoop streaming, or with Hadoop streaming.

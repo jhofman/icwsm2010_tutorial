@@ -1,4 +1,13 @@
 #!/usr/bin/env python
+#
+# file: degree_dist.py
+#
+# description: calculates degree distribution from adjacency list
+#
+# usage: see run_toygraph
+#
+# author: jake hofman (gmail: jhofman)
+#
 
 from hstream import HStream
 import sys
