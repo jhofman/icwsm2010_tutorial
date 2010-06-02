@@ -50,7 +50,7 @@ else
 # hadoop
 
     echo "with hadoop:"
-    cmd="$HADOOP_HOME/bin/hadoop jar $HADOOP_HOME/contrib/streaming/hadoop-*-streaming.jar \
+    cmd="$HADOOP_HOME/bin/hadoop jar $HADOOP_HOME/contrib/streaming/hadoop*streaming*.jar \
 	-input $INPUT \
 	-output $OUTPUT \
 	-mapper \"$MAPPER\" \
