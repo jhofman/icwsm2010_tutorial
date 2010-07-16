@@ -9,9 +9,10 @@
 # author: jake hofman (gmail: jhofman)
 #
 
+import sys
+sys.path.append('.')
 from hstream import HStream
 from collections import defaultdict
-import sys
 
 class BreadthFirstSearchInit(HStream):
 

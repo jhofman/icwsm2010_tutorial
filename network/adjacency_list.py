@@ -9,8 +9,9 @@
 # author: jake hofman (gmail: jhofman)
 #
 
-from hstream import HStream
 import sys
+sys.path.append('.')
+from hstream import HStream
 
 class AdjacencyList(HStream):
     def mapper(self, record):
