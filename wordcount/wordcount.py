@@ -30,6 +30,8 @@
 
 # import simple hadoop streaming class to simply definition of mapper
 # and reducer functions
+import sys
+sys.path.append('.')
 from hstream import HStream
 
 
